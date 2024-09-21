@@ -5,12 +5,11 @@
   --second-color-hovered: #30b872;
   --second-color-active: #2aa465;
 
-  --accent-color: #b93ba7;
-  --accent-color-hovered: #a63495;
-  --accent-color-active: #9b308b;
+  --accent-color: #da7d4e;
+  --accent-color-hovered: #c36f45;
+  --accent-color-active: #b86841;
 
-  --outline-color: #41f698;
-  --outline-color-accent: #ff8fee;
+  --outline-color: #fbfbfb;
   --outline-color-error: #df2626;
 
   --background-color: #222222;
@@ -30,4 +29,11 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.demostrate {
+  display: flex;
+  align-items: start;
+  gap: 50px;
+  padding: 25px;
 }

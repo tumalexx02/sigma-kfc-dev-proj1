@@ -1,43 +1,57 @@
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { Button } from "./components/Button/Button";
 import Input from './components/Input/Input';
+import { ProtectedInput } from './components/ProtectedInput/ProtectedInput';
 
 function App() {
   const [count, setCount] = useState(0);
 
-  const increaseCount = () => {
+  const increaseCount = (e: MouseEvent) => {
+    e.preventDefault();
     setCount((s) => s + 1);
   };
 
   return (
     <>
-      <div>
-        <Button size="small" onClick={increaseCount}>
+      <div className='demostrate'>
+        <Button size="small" onClick={e => increaseCount(e)}>
           Small Button
         </Button>
-        <Button size="medium" onClick={increaseCount}>
+        <Button size="medium" onClick={e => increaseCount(e)}>
           Medium Button
         </Button>
-        <Button size="big" onClick={increaseCount}>
+        <Button size="big" onClick={e => increaseCount(e)}>
           Big Button
         </Button>
       </div>
-      <div>
-        <Button accent={true} size="small" onClick={increaseCount}>
+      <div className='demostrate'>
+        <Button accent={true} size="small" onClick={e => increaseCount(e)}>
           Small Button
         </Button>
-        <Button accent={true} size="medium" onClick={increaseCount}>
+        <Button accent={true} size="medium" onClick={e => increaseCount(e)}>
           Medium Button
         </Button>
-        <Button accent={true} size="big" onClick={increaseCount}>
+        <Button accent={true} size="big" onClick={e => increaseCount(e)}>
           Big Button
         </Button>
       </div>
-      <div>
+      <div className='demostrate'>
         <Input placeholder='Input' />
       </div>
-      <div>
+      <div className='demostrate'>
         <Input placeholder='Input' isValid={false} />
+      </div>
+      <div className='demostrate'>
+        <ProtectedInput placeholder='Password' />
+      </div>
+
+      <div className='demostrate'>
+        <Button size="big" onClick={e => increaseCount(e)}>
+          Войти
+        </Button>
+        <Button size="big" onClick={e => increaseCount(e)}>
+          Зарегистрироваться
+        </Button>
       </div>
       {count}
     </>

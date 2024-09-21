@@ -6,8 +6,9 @@
   font-family: "Montserrat", sans-serif;
   padding: 16px 24px;
   border-radius: 16px;
-  transition: background-color 0.3s ease, scale 0.1s ease;
+  transition: background-color 0.3s ease, scale 0.1s ease, outline-color 0.2s;
   cursor: pointer;
+  outline: 2px solid transparent;
 }
 
 .button.small {
@@ -29,11 +30,11 @@
   font-size: 20px;
   line-height: 28px;
   padding: 16px 48px;
+  letter-spacing: 1px;
 }
 
 .button.accent {
   background-color: var(--accent-color);
-  color: var(--text-color);
 }
 
 .button:active {
@@ -46,10 +47,11 @@
 }
 
 .button:focus {
-  outline: solid 2px var(--outline-color);
+  outline: 2px solid var(--outline-color);
 }
-.button.accent:focus {
-  outline: solid 2px var(--outline-color-accent);
+
+.button.button.accent:focus {
+  outline: 2px solid var(--outline-color);
 }
 
 @media (hover: hover) {
