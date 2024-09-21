@@ -1,7 +1,7 @@
 .button {
   border: none;
   background-color: var(--second-color);
-  color: var(--invert-color);
+  color: var(--text-color);
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
   padding: 16px 24px;
@@ -44,13 +44,14 @@
 
 .button.accent:active {
   background-color: var(--accent-color-active);
+  outline: none;
 }
 
 .button:focus {
   outline: 2px solid var(--outline-color);
 }
 
-.button.button.accent:focus {
+.button.accent:focus {
   outline: 2px solid var(--outline-color);
 }
 
@@ -60,11 +61,13 @@
   }
   .button:active {
     background-color: var(--second-color-active);
+    outline: none;
   }
   .button.accent:hover {
     background-color: var(--accent-color-hovered);
   }
   .button.accent:active {
     background-color: var(--accent-color-active);
+    outline: none;
   }
 }
