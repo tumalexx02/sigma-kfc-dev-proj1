@@ -1,0 +1,24 @@
+.input {
+  font-size: 18px;
+  line-height: 24px;
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-weight: 400;
+  background-color: var(--background-color);
+  border: solid 0.25px var(--placeholder-color);
+  color: var(--text-color);
+}
+
+.input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.input:focus {
+  outline: 2px solid var(--outline-color);
+  border: none;
+}
+
+.invalid {
+  outline: 2px solid var(--outline-color-error);
+  border: none;
+}
