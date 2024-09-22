@@ -108,7 +108,7 @@ export function Register() {
     }
 
     clearError();
-    register();
+    register(name, email, password);
   }
 
   return (

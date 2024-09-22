@@ -79,7 +79,7 @@ export function Login() {
     }
 
     clearError();
-    login();
+    login(email, password);
   }
 
   return (
