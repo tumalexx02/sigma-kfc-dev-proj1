@@ -7,6 +7,7 @@ import (
 
 type error struct {
 	Message string `json:"message"`
+	//Tag     string `json:"tag"`
 }
 
 func NewErrorResponse(c *gin.Context, statusCode int, message string) {

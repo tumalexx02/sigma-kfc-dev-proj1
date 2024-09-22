@@ -5,9 +5,8 @@ import (
 	"backend/internal/models/user"
 	"crypto/sha1"
 	"fmt"
+	"os"
 )
-
-const salt = "sigmapass"
 
 type AuthService struct {
 	db database.Authorization
@@ -25,6 +24,6 @@ func (s *AuthService) CreateUser(user user.User) (int, error) {
 func generatePasswordHash(password string) string {
 	hash := sha1.New()
 	hash.Write([]byte(password))
-
+	salt := os.Getenv("salt")
 	return fmt.Sprintf("%x", hash.Sum([]byte(salt)))
 }

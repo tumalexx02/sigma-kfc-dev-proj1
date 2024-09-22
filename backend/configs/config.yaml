@@ -1,7 +1,0 @@
-port: "8000"
-db:
-  dbport: "5436"
-  dbhost: "localhost"
-  username: "postgres"
-  dbname: "postgresweb"
-  sslMode: "disable"
