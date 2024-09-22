@@ -7,6 +7,7 @@ import (
 
 type Authorization interface {
 	CreateUser(user user.User) (int, error)
+	GetUser(email, password string) (user.User, error)
 }
 
 type Database struct {
