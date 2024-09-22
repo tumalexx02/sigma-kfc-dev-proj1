@@ -1,11 +1,13 @@
+import axios from 'axios';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
+import { IAuthResponse } from '../interfaces/Auth.interface';
 
 export interface IUserStore {
   jwt: string | null;
   serverError: string | null;
-  login: () => void;
-  register: () => void;
+  login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
   clearServerError: () => void;
 }
 
@@ -14,11 +16,32 @@ export const useUserStore = create<IUserStore>()(devtools(
     (set) => ({
       jwt: null,
       serverError: null,
-      login: async () => {
-        Promise.reject('Неверный email или пароль').catch((e) => set({serverError: e}));
+      login: async (email: string, password: string) => {
+        try {
+          const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-in', {
+            email,
+            password
+          })
+  
+          set({ jwt: data['token'] });
+          console.log(data['token']);
+        } catch(e) {
+          console.log(e)
+        }
       },
-      register: async () => {
-        Promise.reject('Пользователь с таким email уже существует').catch((e) => set({serverError: e}));
+      register: async (name: string, email: string, password: string) => {
+        try {
+          const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-up', {
+            name,
+            email,
+            password
+          })
+  
+          set({ jwt: data['token'] });
+          console.log(data['token']);
+        } catch(e) {
+          console.log(e)
+        }
       },
       clearServerError: () => set({serverError: null})
     }),
