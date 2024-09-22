@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  postgres-web:
+    image: postgres:15
+    container_name: postgres-web
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgresweb
+    ports:
+      - "5436:5432"
