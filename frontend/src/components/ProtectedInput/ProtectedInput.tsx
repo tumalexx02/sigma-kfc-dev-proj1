@@ -1,24 +1,23 @@
-import { MouseEvent, useState } from 'react';
+import { forwardRef, MouseEvent, useState } from 'react';
 import Input from '../Input/Input';
 import { IInputProps } from '../Input/Input.props';
 import styles from './ProtectedInput.module.css';
 import cn from 'classnames'
 
-export function ProtectedInput({className, ...props}: IInputProps) {
+const ProtectedInput = forwardRef<HTMLInputElement, IInputProps>(({className, ...props}, ref) => {
   const [isPrivate, setIsPrivate] = useState<boolean>(true);
 
   const visibilityButtonHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    e.currentTarget.blur();
     setIsPrivate(state => !state);
   }
 
   return (
     <div className={styles['protected-input']}>
-      <Input type={isPrivate ? 'password' : 'text'} {...props} className={cn(className, styles['input'], {
+      <Input ref={ref} type={isPrivate ? 'password' : 'text'} {...props} className={cn(className, styles['input'], {
         [styles['dotted-input']]: isPrivate
       })} />
-      <button className={styles['toggle-button']} onClick={visibilityButtonHandler}>
+      <button type="button" className={styles['toggle-button']} onClick={visibilityButtonHandler} onMouseDown={e => e.preventDefault()}>
         {
           isPrivate
             ? <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="20px" fill="var(--placeholder-color)">
@@ -31,4 +30,6 @@ export function ProtectedInput({className, ...props}: IInputProps) {
       </button>
     </div>
   )
-}
+})
+
+export default ProtectedInput;

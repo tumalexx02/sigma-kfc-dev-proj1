@@ -1,47 +1,41 @@
 .layout {
   display: flex;
   flex-direction: column;
+  position: relative;
   background-color: var(--background-color);
   min-height: 100vh;
 }
 
 .header {
-  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  padding: 20px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 0.5px solid var(--placeholder-color);
+  background-color: var(--background-color);
 }
 
 .logo {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  letter-spacing: 2px;
-  height: 60px;
-  line-height: 60px;
-  font-size: 32px;
-  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 40px;
+  height: 100%;
+}
+
+.logo svg {
+  height: 40px;
 }
 
 .content {
   min-width: 100vw;
   width: 100%;
   height: 100%;
+  padding: 60px;
   display: flex;
-  flex-grow: 1;
-}
-
-.left-content {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 40px;
-  flex: 1;
-}
-.left-content img {
-  width: 60%;
-}
-
-.right-content {
-  flex: 1;
+  align-items: center;
+  flex-grow: 1;
 }

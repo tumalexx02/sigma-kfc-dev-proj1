@@ -1,15 +1,27 @@
 .theme-button {
   display: flex;
   background-color: var(--background-color);
-  padding: 15px;
-  border-radius: 16px;
+  padding: 11.5px;
+  border-radius: 12px;
   border: solid 0.5px var(--placeholder-color);
   outline: solid 2px transparent;
   color: var(--text-color);
-  transition: outline-color 0.2s, border-color 0.2s;
+  transition: scale 0.1s ease, outline-color 0.2s, border-color 0.2s;
   cursor: pointer;
 }
 
 .theme-button svg path {
-  fill: var(--text-color)
+  fill: var(--placeholder-color);
+  transition: fill 0.1s ease;
+}
+
+.theme-button:focus {
+  outline: solid 2px var(--outline-color);
+  border-color: transparent;
+}
+
+@media (hover: hover) {
+  .theme-button:hover svg path {
+    fill: var(--text-color)
+  }
 }

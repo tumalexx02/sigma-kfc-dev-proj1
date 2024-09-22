@@ -3,49 +3,63 @@ import { Button } from '../../components/Button/Button';
 import { Headling } from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
 import ProtectedInput from '../../components/ProtectedInput/ProtectedInput';
-import styles from './Login.module.css';
+import styles from './Register.module.css';
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import { isEmailValid, isPasswordValid } from '../../helpers/auth.validation';
 import { useUserStore } from '../../stores/user.store';
+import { isNameValid, isPasswordValid, isEmailValid, arePasswordsSame } from '../../helpers/auth.validation';
 
-export type LoginErrorTypes = 'email' | 'password' | 'all' | null;
+export type RegisterErrorTypes = 'name' | 'email' | 'password' | 'repeat-password' | 'all' | null;
 
 export type LoginForm = {
+  name: {
+    value: string;
+  },
   email: {
     value: string;
   };
   password: {
     value: string;
-  }
+  },
+  repeatPassword: {
+    value: string;
+  },
 }
 
-export function Login() {
-  const [errorType, setErrorType] = useState<LoginErrorTypes>(null);
+export function Register() {
+  const [errorType, setErrorType] = useState<RegisterErrorTypes>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const serverError = useUserStore(state => state.serverError);
-  const login = useUserStore(state => state.login);
+  const register = useUserStore(state => state.register);
   const clearServerError = useUserStore(state => state.clearServerError);
-
+  
+  const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const repeatPasswordRef = useRef<HTMLInputElement>(null);
 
   useEffect(clearError, [clearServerError]);
 
   useEffect(() => {
     if (serverError) {
       setErrorMessage(serverError);
-      setErrorType('all');
+      setErrorType('email');
     }
   }, [serverError])
 
   useEffect(() => {
     switch(errorType) {
+      case 'name':
+        nameRef.current?.focus();
+        break;
       case 'email':
         emailRef.current?.focus();
         break;
       case 'password':
         passwordRef.current?.focus();
+        break;
+      case 'repeat-password':
+        repeatPasswordRef.current?.focus();
         break;
       case 'all':
         emailRef.current?.focus();
@@ -63,8 +77,17 @@ export function Login() {
     e.preventDefault();
 
     const target = e.target as typeof e.target & LoginForm;
+    
+    const name = target.name.value.trim();
     const email = target.email.value.trim();
     const password = target.password.value.trim();
+    const repeatPassword = target.repeatPassword.value.trim();
+
+    if (!isNameValid(name)) {
+      setErrorType('name');
+      setErrorMessage('Имя должно быть не короче 2 символов');
+      return;
+    }
 
     if (!isEmailValid(email)) {
       setErrorType('email');
@@ -78,13 +101,19 @@ export function Login() {
       return;
     }
 
+    if (!arePasswordsSame(password, repeatPassword)) {
+      setErrorType('repeat-password');
+      setErrorMessage('Пароли должны совпадать');
+      return;
+    }
+
     clearError();
-    login();
+    register();
   }
 
   return (
     <div className={styles['form-wrapper']}>
-      <Headling>Вход</Headling>
+      <Headling>Регистрация</Headling>
 
       {errorMessage && 
       (<div className={styles['error-message']}>
@@ -97,19 +126,24 @@ export function Login() {
 
       <form className={styles['form']} onSubmit={handleSubmit}>
         <div className={styles['input-wrapper']}>
+          <label className={styles['label']} htmlFor="name">Ваше имя</label>
+          <Input ref={nameRef} placeholder="Имя" id="name" type="text" name="name" isValid={(errorType !== 'all') && (errorType !== 'name')} onChange={() => clearError()} />
+        </div>
+        <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="email">Ваш Email</label>
           <Input ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
         </div>
         <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="password">Ваш пароль</label>
           <ProtectedInput ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+          <ProtectedInput ref={repeatPasswordRef} placeholder="Повторите пароль" id="repeatPassword" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
         </div>
-        <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Войти</Button>
+        <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Зарегистрироваться</Button>
       </form>
 
       <div className={styles['more-wrapper']}>
-        <span>Ещё нет аккаунта?</span>
-        <Link className={styles['link']} to='/auth/register'>Зарегистрироваться</Link>
+        <span>Уже есть аккаунт?</span>
+        <Link className={styles['link']} to='/auth/login'>Войти</Link>
       </div>
     </div>
   )

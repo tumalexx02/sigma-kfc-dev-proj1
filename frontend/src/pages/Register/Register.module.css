@@ -5,7 +5,7 @@
   padding: 40px 60px;
   border-radius: 32px;
   border: 0.5px solid var(--placeholder-color);
-  min-width: 520px;
+  width: 520px;
   background-color: var(--background-color);
 }
 
@@ -68,8 +68,6 @@
   background-color: var(--background-color);
   flex: 1;
   height: 100%;
-  max-width: 337px;
-  width: 100%;
   color: var(--text-color);
   padding: 20px;
   border-radius: 14px;

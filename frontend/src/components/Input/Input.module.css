@@ -1,7 +1,7 @@
 .input {
   font-size: 18px;
   line-height: 24px;
-  padding: 16px 24px;
+  padding: 20px 24px;
   border-radius: 16px;
   font-weight: 400;
   background-color: var(--background-color);
@@ -9,6 +9,7 @@
   outline: solid 2px transparent;
   color: var(--text-color);
   transition: outline-color 0.2s, border-color 0.2s;
+  width: 100%;
 }
 
 .input::placeholder {
@@ -20,7 +21,7 @@
   border-color: transparent;
 }
 
-.invalid {
+.input.invalid {
   outline: 2px solid var(--outline-color-error);
   border-color: transparent;
 }
