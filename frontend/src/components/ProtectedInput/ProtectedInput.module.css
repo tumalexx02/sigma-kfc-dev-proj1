@@ -1,0 +1,40 @@
+.protected-input {
+  position: relative;
+  display: inline-block;
+}
+
+.toggle-button {
+  position: absolute;
+  padding: 0;
+  right: 20px;
+  height: 100%;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-button:focus {
+  outline: none;
+}
+
+.toggle-button:focus svg path {
+  fill: var(--outline-color);
+  transition: fill 0.2s;
+}
+
+.toggle-button:active svg path {
+  fill: var(--placeholder-color);
+}
+
+.dotted-input {
+  letter-spacing: 2px;
+}
+
+.input {
+  padding-right: 60px;
+}
+
+.dotted-input::placeholder {
+  letter-spacing: normal;
+}

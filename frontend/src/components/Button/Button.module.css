@@ -1,0 +1,73 @@
+.button {
+  border: none;
+  background-color: var(--second-color);
+  color: var(--text-color);
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  padding: 16px 24px;
+  border-radius: 16px;
+  transition: background-color 0.3s ease, scale 0.1s ease, outline-color 0.2s;
+  cursor: pointer;
+  outline: 2px solid transparent;
+}
+
+.button.small {
+  min-width: 160px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.button.medium {
+  min-width: 200px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.button.big {
+  text-transform: uppercase;
+  min-width: 260px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  padding: 16px 48px;
+  letter-spacing: 1px;
+}
+
+.button.accent {
+  background-color: var(--accent-color);
+}
+
+.button:active {
+  background-color: var(--second-color-active);
+  scale: 0.97;
+}
+
+.button.accent:active {
+  background-color: var(--accent-color-active);
+  outline: none;
+}
+
+.button:focus {
+  outline: 2px solid var(--outline-color);
+}
+
+.button.accent:focus {
+  outline: 2px solid var(--outline-color);
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--second-color-hovered);
+  }
+  .button:active {
+    background-color: var(--second-color-active);
+    outline: none;
+  }
+  .button.accent:hover {
+    background-color: var(--accent-color-hovered);
+  }
+  .button.accent:active {
+    background-color: var(--accent-color-active);
+    outline: none;
+  }
+}

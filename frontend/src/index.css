@@ -1,12 +1,80 @@
 :root {
+  --main-color: #26655e;
 
+  --second-color: #36cb7d;
+  --second-color-hovered: #30b872;
+  --second-color-active: #2aa465;
+
+  --accent-color: #da7d4e;
+  --accent-color-hovered: #c36f45;
+  --accent-color-active: #b86841;
+
+  --outline-color: #fbfbfb;
+  --outline-color-error: #df2626;
+
+  --background-color: #222222;
+  --text-color: #fbfbfb;
+  --invert-color: #161616;
+
+  --placeholder-color: #808080;
+}
+
+.dark {
+  --main-color: #26655e;
+
+  --second-color: #3e9b62;
+  --second-color-hovered: #30b872;
+  --second-color-active: #2aa465;
+
+  --accent-color: #b76942;
+  --accent-color-hovered: #c36f45;
+  --accent-color-active: #b86841;
+
+  --outline-color: #fbfbfb;
+  --outline-color-error: #df2626;
+
+  --background-color: #222222;
+  --text-color: #fbfbfb;
+  --invert-color: #161616;
+
+  --placeholder-color: #808080;
+}
+
+.light {
+  --main-color: #4ddbcb;
+
+  --second-color: #36cb7d;
+  --second-color-hovered: #30b872;
+  --second-color-active: #2aa465;
+
+  --accent-color: #e78c5f;
+  --accent-color-hovered: #c36f45;
+  --accent-color-active: #b86841;
+
+  --outline-color: #161616;
+  --outline-color-error: #dd4747;
+
+  --background-color: #e8e8e8;
+  --text-color: #161616;
+  --invert-color: #fbfbfb;
+
+  --placeholder-color: #808080;
 }
 
 body {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
 }
 
 * {
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.demostrate {
+  display: flex;
+  align-items: start;
+  gap: 50px;
+  padding: 25px;
 }
