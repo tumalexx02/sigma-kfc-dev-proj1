@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
 import { Headling } from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
@@ -23,6 +23,7 @@ export function Login() {
   const [errorType, setErrorType] = useState<LoginErrorTypes>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const jwt = useUserStore(state => state.jwt);
   const serverError = useUserStore(state => state.serverError);
   const login = useUserStore(state => state.login);
   const clearServerError = useUserStore(state => state.clearServerError);
@@ -30,7 +31,15 @@ export function Login() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  const navigate = useNavigate();
+
   useEffect(clearError, [clearServerError]);
+
+  useEffect(() => {
+    if (jwt) {
+      navigate('/');
+    }
+  }, [jwt, navigate]);
 
   useEffect(() => {
     if (serverError) {
