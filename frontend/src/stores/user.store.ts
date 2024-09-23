@@ -30,6 +30,7 @@ export const useUserStore = create<IUserStore>()(devtools(
         }
       },
       register: async (name: string, email: string, password: string) => {
+        console.log("U ARE HERE!!!!")
         try {
           const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-up', {
             name,

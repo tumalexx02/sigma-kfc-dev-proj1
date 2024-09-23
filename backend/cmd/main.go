@@ -19,12 +19,14 @@ func main() {
 		os.Exit(1)
 	}
 	db, err := database.NewPostgresDB(database.Config{
-		Host:     viper.GetString("db.dbhost"),
-		Port:     viper.GetString("db.dbport"),
-		User:     viper.GetString("db.username"),
-		Password: os.Getenv("DB_PASSWORD"),
-		Database: viper.GetString("db.dbname"),
-		SSLMode:  viper.GetString("db.sslmode"),
+		Host:          viper.GetString("db.dbhost"),
+		Port:          viper.GetString("db.dbport"),
+		User:          viper.GetString("db.username"),
+		Password:      os.Getenv("DB_PASSWORD"),
+		Database:      viper.GetString("db.dbname"),
+		SSLMode:       viper.GetString("db.sslmode"),
+		MigrationPath: "backend/migrations",
+		IsReload:      true,
 	})
 	if err != nil {
 		logrus.Info("Database init error: ", err)
