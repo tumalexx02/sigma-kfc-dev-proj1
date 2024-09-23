@@ -25,7 +25,7 @@ func main() {
 		Password:      os.Getenv("DB_PASSWORD"),
 		Database:      viper.GetString("db.dbname"),
 		SSLMode:       viper.GetString("db.sslmode"),
-		MigrationPath: "backend/migrations",
+		MigrationPath: "/app/migrations",
 		IsReload:      true,
 	})
 	if err != nil {
