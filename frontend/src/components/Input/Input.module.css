@@ -25,3 +25,16 @@
   outline: 2px solid var(--outline-color-error);
   border-color: transparent;
 }
+
+.input:-webkit-autofill {
+  background-color: var(--background-color) !important;
+  -webkit-box-shadow: 0 0 0 100px var(--webkit-autofill-backbround) inset !important;
+}
+
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}

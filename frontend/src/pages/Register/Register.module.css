@@ -5,8 +5,10 @@
   padding: 40px 60px;
   border-radius: 32px;
   border: 0.5px solid var(--placeholder-color);
-  width: 520px;
+  max-width: 520px;
+  width: 100%;
   background-color: var(--background-color);
+  margin: 0 auto;
 }
 
 .form {
@@ -71,4 +73,11 @@
   color: var(--text-color);
   padding: 20px;
   border-radius: 14px;
+}
+
+@media (max-width: 575px) {
+  .form-wrapper {
+    padding: 0 20px;
+    border-color: transparent;
+  }
 }

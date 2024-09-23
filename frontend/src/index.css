@@ -79,3 +79,7 @@ body {
   gap: 50px;
   padding: 25px;
 }
+
+.input[type="password"] {
+  -webkit-text-security: disc;
+}
