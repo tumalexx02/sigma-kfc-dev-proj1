@@ -4,9 +4,9 @@ type ButtonSizes = 'small' | 'medium' | 'big';
 type ButtonShape = 'round' | 'default' | 'square';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  size: ButtonSizes;
+  size?: ButtonSizes;
   accent?: boolean;
   shape?: ButtonShape;
-  children: ReactNode;
+  children?: ReactNode;
   outlined?: boolean;
 }

@@ -1,8 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
 import styles from './AuthLayout.module.css';
-import { ToggleThemeButton } from '../../components/ToggleThemeButton/ToggleThemeButton';
 import cn from 'classnames';
 import { Logo } from '../../components/Logo/Logo';
+import { ToggleThemeButton } from '../../components/ToggleThemeButton/ToggleThemeButton';
 
 function AuthLayout() {
 

@@ -100,6 +100,11 @@
   outline: 2px solid var(--outline-color);
 }
 
+.button.outlined:focus:not(.button:active) {
+  outline: 2px solid var(--second-color);
+  border-color: transparent;
+}
+
 /* HOVER */
 
 @media (hover: hover) {
