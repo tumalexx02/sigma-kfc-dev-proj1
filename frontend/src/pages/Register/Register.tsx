@@ -144,8 +144,8 @@ export function Register() {
         </div>
         <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="password">Ваш пароль</label>
-          <ProtectedInput ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
-          <ProtectedInput ref={repeatPasswordRef} placeholder="Повторите пароль" id="repeatPassword" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
+          <ProtectedInput autoComplete='current-password' ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+          <ProtectedInput autoComplete='current-password' ref={repeatPasswordRef} placeholder="Повторите пароль" id="repeatPassword" name="password" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
         </div>
         <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Зарегистрироваться</Button>
       </form>

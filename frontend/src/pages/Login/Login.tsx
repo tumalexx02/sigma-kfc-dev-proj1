@@ -107,11 +107,11 @@ export function Login() {
       <form className={styles['form']} onSubmit={handleSubmit}>
         <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="email">Ваш Email</label>
-          <Input ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
+          <Input autoComplete='email' ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
         </div>
         <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="password">Ваш пароль</label>
-          <ProtectedInput ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+          <ProtectedInput autoComplete='current-password' ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
         </div>
         <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Войти</Button>
       </form>

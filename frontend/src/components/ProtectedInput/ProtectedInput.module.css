@@ -29,11 +29,11 @@
 
 .dotted-input {
   letter-spacing: 2px;
+  -webkit-text-security: disc;
 }
 
 .input {
   padding-right: 60px;
-  -webkit-text-security: disc;
 }
 
 .dotted-input::placeholder {
