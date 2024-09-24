@@ -29,7 +29,6 @@
 
 .dotted-input {
   letter-spacing: 2px;
-  -webkit-text-security: disc;
 }
 
 .input {
@@ -38,12 +37,4 @@
 
 .dotted-input::placeholder {
   letter-spacing: normal;
-}
-
-.input:-webkit-autofill + .toggle-button {
-  display: none;
-}
-
-.input:-webkit-autofill {
-  padding-right: 24px;
 }

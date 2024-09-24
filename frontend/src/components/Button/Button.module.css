@@ -1,25 +1,32 @@
 .button {
   border: none;
   background-color: var(--second-color);
+  border: 1px solid transparent;
   color: var(--text-color);
-  font-weight: 600;
+  font-weight: 500;
   font-family: "Montserrat", sans-serif;
   padding: 16px 24px;
-  border-radius: 16px;
-  transition: background-color 0.3s ease, scale 0.1s ease, outline-color 0.2s;
+  transition: background-color 0.3s ease, scale 0.1s ease, border-color 0.2s ease;
   cursor: pointer;
   outline: 2px solid transparent;
 }
 
+/* SIZES */
+
 .button.small {
-  min-width: 160px;
-  font-size: 16px;
+  min-width: 100px;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 500;
   line-height: 20px;
 }
 
 .button.medium {
   min-width: 200px;
-  font-size: 18px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 12px 24px;
   line-height: 24px;
 }
 
@@ -27,15 +34,37 @@
   text-transform: uppercase;
   min-width: 260px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 28px;
-  padding: 16px 48px;
+  padding: 16px 26px;
   letter-spacing: 1px;
+  border-radius: 12px;
 }
+
+/* ACCENT */
 
 .button.accent {
   background-color: var(--accent-color);
 }
+
+/* SHAPE */
+
+.button.round {
+  border-radius: 30px;
+}
+
+.button.square {
+  border-radius: 3px;
+}
+
+/* OUTLINED */
+
+.button.outlined {
+  border: 1px solid var(--text-color);
+  background-color: transparent;
+}
+
+/* ACTIVE */
 
 .button:active {
   background-color: var(--second-color-active);
@@ -47,27 +76,57 @@
   outline: none;
 }
 
-.button:focus {
-  outline: 2px solid var(--outline-color);
-}
-
-.button.accent:focus {
-  outline: 2px solid var(--outline-color);
+.button.outlined:active {
+  border: 1px solid transparent;
 }
 
 @media (hover: hover) {
-  .button:hover {
-    background-color: var(--second-color-hovered);
-  }
   .button:active {
     background-color: var(--second-color-active);
     outline: none;
-  }
-  .button.accent:hover {
-    background-color: var(--accent-color-hovered);
   }
   .button.accent:active {
     background-color: var(--accent-color-active);
     outline: none;
   }
+  .button.outlined:active {
+    border: 1px solid transparent;
+  }
+}
+
+/* FOCUS */
+
+.button:focus:not(.button:active) {
+  outline: 2px solid var(--outline-color);
+}
+
+/* HOVER */
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--second-color-hovered);
+  }
+  .button.accent:hover {
+    background-color: var(--accent-color-hovered);
+  }
+  .button.outlined:hover {
+    border: 1px solid transparent;
+  }
+}
+
+/* DISABLED */
+
+.button:disabled {
+  color: var(--placeholder-color);
+  background-color: var(--second-color-disabled);
+}
+
+.button.accent:disabled {
+  color: var(--placeholder-color);
+  background-color: var(--accent-color-disabled);
+}
+
+.button.outlined:disabled {
+  border: 1px solid var(--placeholder-color);
+  background-color: transparent;
 }

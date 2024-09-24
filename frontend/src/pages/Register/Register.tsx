@@ -85,6 +85,7 @@ export function Register() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    
     const target = e.target as typeof e.target & LoginForm;
     
     const name = target.name.value.trim();
@@ -136,16 +137,19 @@ export function Register() {
       <form className={styles['form']} onSubmit={handleSubmit}>
         <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="name">Ваше имя</label>
-          <Input ref={nameRef} placeholder="Имя" id="name" type="text" name="name" isValid={(errorType !== 'all') && (errorType !== 'name')} onChange={() => clearError()} />
+          <Input autoComplete='name' ref={nameRef} placeholder="Имя" id="name" type="text" name="name" isValid={(errorType !== 'all') && (errorType !== 'name')} onChange={() => clearError()} />
         </div>
         <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="email">Ваш Email</label>
-          <Input ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
+          <Input autoComplete='email' ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
         </div>
         <div className={styles['input-wrapper']}>
           <label className={styles['label']} htmlFor="password">Ваш пароль</label>
-          <ProtectedInput autoComplete='current-password' ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
-          <ProtectedInput autoComplete='current-password' ref={repeatPasswordRef} placeholder="Повторите пароль" id="repeatPassword" name="password" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
+          <ProtectedInput autoComplete='new-password' ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+        </div>
+        <div className={styles['input-wrapper']}>
+          <label className={styles['label']} htmlFor="repeatPasswordRef">Повторите пароль</label>
+          <ProtectedInput autoComplete='new-password' ref={repeatPasswordRef} placeholder="Ваш пароль (повтор)" id="repeatPassword" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
         </div>
         <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Зарегистрироваться</Button>
       </form>

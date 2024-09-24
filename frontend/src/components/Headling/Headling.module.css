@@ -7,3 +7,10 @@
   font-weight: 600;
   letter-spacing: 2px;
 }
+
+@media (max-width: 575px) {
+  .headling {
+    font-size: 32px;
+    line-height: 48px;
+  }
+}

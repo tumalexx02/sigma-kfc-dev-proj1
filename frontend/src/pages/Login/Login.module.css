@@ -20,12 +20,12 @@
 .input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .label {
-  font-size: 18px;
-  color: var(--placeholder-color);
+  font-size: 16px;
+  color: var(--label-color);
 }
 
 .button {
@@ -39,7 +39,7 @@
 }
 
 .more-wrapper span {
-  color: var(--text-color);
+  color: var(--label-color);
 }
 
 .link {
@@ -81,5 +81,6 @@
   .form-wrapper {
     padding: 0 20px;
     border-color: transparent;
+    gap: 25px;
   }
 }
