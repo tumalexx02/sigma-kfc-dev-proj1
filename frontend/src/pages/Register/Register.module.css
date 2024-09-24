@@ -48,6 +48,21 @@
   color: var(--second-color);
 }
 
+.link:focus {
+  outline: none;
+  color: var(--second-color-active);
+  text-decoration: underline;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: var(--second-color-hovered);
+  }
+  .link:hover {
+    color: var(--second-color-active);
+  }
+}
+
 @media (max-width: 575px) {
   .form-wrapper {
     padding: 0 20px;

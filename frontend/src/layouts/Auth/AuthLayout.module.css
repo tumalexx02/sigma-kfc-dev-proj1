@@ -18,8 +18,23 @@
   flex-shrink: 0;
 }
 
+.logo {
+  outline: none;
+  max-height: 40px;
+  height: 100%;
+}
+
+.logo:focus {
+  outline: none;
+}
+
+.logo:focus svg {
+  fill: var(--second-color-active);
+  transition: fill 0.2s;
+}
+
 .logo svg {
-  height: 40px;
+  height: 100%;
 }
 
 .content {
