@@ -151,7 +151,7 @@ export function Register() {
           <label className={styles['label']} htmlFor="repeatPasswordRef">Повторите пароль</label>
           <ProtectedInput autoComplete='new-password' ref={repeatPasswordRef} placeholder="Ваш пароль (повтор)" id="repeatPassword" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
         </div>
-        <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Зарегистрироваться</Button>
+        <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Создать аккаунт</Button>
       </form>
 
       <div className={styles['more-wrapper']}>

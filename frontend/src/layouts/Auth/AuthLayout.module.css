@@ -3,8 +3,7 @@
   flex-direction: column;
   position: relative;
   background-color: var(--background-color);
-  max-height: 100vh;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .header {
@@ -50,3 +49,8 @@
   background-clip: content-box;
 }
 
+@media (max-width: 575px) {
+  .content {
+    padding: 30px 10px 60px;
+  }
+}
