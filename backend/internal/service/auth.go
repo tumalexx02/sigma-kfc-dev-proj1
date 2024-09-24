@@ -16,7 +16,7 @@ type AuthService struct {
 
 type tokenClaims struct {
 	jwt.StandardClaims
-	UserId int `json:"user_id"`
+	Email string `json:"email"`
 }
 
 func NewAuthService(db database.Authorization) *AuthService {
@@ -33,11 +33,11 @@ func (s *AuthService) GenerateToken(email, password string) (string, error) {
 		return "", err
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
-		jwt.StandardClaims{
+		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(12 * time.Hour).Unix(),
 			IssuedAt:  time.Now().Unix(),
 		},
-		users.Id})
+		Email: users.Email})
 	return token.SignedString([]byte(os.Getenv("JWT_SECRET")))
 }
 

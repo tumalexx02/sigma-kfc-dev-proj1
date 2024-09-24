@@ -13,13 +13,18 @@ func (h *Handler) signUp(c *gin.Context) {
 		NewErrorResponse(c, http.StatusBadRequest, err.Error(), "Invalid request body")
 		return
 	}
-	id, err := h.services.CreateUser(input)
+	_, err := h.services.CreateUser(input)
 	if err != nil {
 		NewErrorResponse(c, http.StatusInternalServerError, "Аккаунт с данной почтой уже существует", "Email")
 		return
 	}
+	token, err := h.services.Authorization.GenerateToken(input.Email, input.Password)
+	if err != nil {
+		NewErrorResponse(c, http.StatusInternalServerError, "Неверный логин или пароль", "all")
+		return
+	}
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"id": id,
+		"token": token,
 	})
 }
 

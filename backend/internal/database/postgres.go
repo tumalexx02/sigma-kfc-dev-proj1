@@ -28,6 +28,7 @@ func NewPostgresDB(cfg Config) (*sqlx.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	err = db.Ping()
 	if err != nil {
 		return nil, err
@@ -56,10 +57,17 @@ func InitMigrations(db *sql.DB, migrationsPath string, cfg Config) error {
 }
 
 func CheckTableExists(db *sql.DB, tableName string) (bool, error) {
-	query := fmt.Sprintf("SELECT COUNT(*) FROM %s", tableName)
-	var result sql.NullString
-	if err := db.QueryRow(query).Scan(&result); err != nil {
+	query := `
+        SELECT EXISTS (
+            SELECT 1
+            FROM information_schema.tables
+            WHERE table_schema = 'public' 
+            AND table_name = $1
+        );
+    `
+	var exists bool
+	if err := db.QueryRow(query, tableName).Scan(&exists); err != nil {
 		return false, err
 	}
-	return result.Valid, nil
+	return exists, nil
 }

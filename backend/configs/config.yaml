@@ -4,3 +4,4 @@ db:
   username: "postgres"
   dbname: "postgresweb"
   sslMode: "disable"
+  is_reload: false

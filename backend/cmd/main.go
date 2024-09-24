@@ -3,8 +3,8 @@ package main
 import (
 	"backend/internal/config"
 	"backend/internal/database"
+	handler "backend/internal/handlers/rest"
 	"backend/internal/service"
-	handler "backend/internal/transport/rest"
 	"backend/web/server"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
@@ -26,7 +26,7 @@ func main() {
 		Database:      viper.GetString("db.dbname"),
 		SSLMode:       viper.GetString("db.sslmode"),
 		MigrationPath: "/app/migrations",
-		IsReload:      true,
+		IsReload:      viper.GetBool("db.isreload"),
 	})
 	if err != nil {
 		logrus.Info("Database init error: ", err)
