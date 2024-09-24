@@ -1,6 +1,5 @@
 db:
   dbport: "5432"
-  dbhost: postgres-web
   username: "postgres"
   dbname: "postgresweb"
   sslMode: "disable"

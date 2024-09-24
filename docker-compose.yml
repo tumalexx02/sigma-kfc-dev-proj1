@@ -8,21 +8,47 @@ services:
       - "80:80"
     volumes:
       - './nginx.conf:/etc/nginx/nginx.conf'
+    networks:
+      - dev
+
+  postgresprod:
+    image: postgres:15
+    container_name: postgres-prod
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgresweb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+  backendprod:
+    image: backend:new
+    container_name: backend-prod
+    ports:
+      - "8000:8000"
+    environment:
+      DB_PASSWORD: "postgres"
+      salt: "kfcpassword"
+      PORT: "8000"
+      JWT_SECRET: "KLJzxlcjzkxljcklasnndlasjd13"
+      dbhost: postgresprod
     depends_on:
-      - backend
-      - frontend
+      - postgresprod
     networks:
       - dev
-    
+  frontendprod:
+    image: frontend:latest
+    container_name: frontend-prod
+    ports:
+      - "5173:5173"
+    networks:
+      - dev
+    command: sh -c "npm run dev"
 
-  backend:
-    build:
-      context: ./backend
-    networks:
-      - dev
-
-  frontend:
-    build:
-      context: ./frontend
-    networks:
-      - dev
+volumes:
+  postgres-data:
+    driver: local

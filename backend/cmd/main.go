@@ -19,7 +19,7 @@ func main() {
 		os.Exit(1)
 	}
 	db, err := database.NewPostgresDB(database.Config{
-		Host:          viper.GetString("db.dbhost"),
+		Host:          os.Getenv("dbhost"),
 		Port:          viper.GetString("db.dbport"),
 		User:          viper.GetString("db.username"),
 		Password:      os.Getenv("DB_PASSWORD"),
