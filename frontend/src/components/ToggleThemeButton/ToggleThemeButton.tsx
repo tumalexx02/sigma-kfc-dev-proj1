@@ -10,8 +10,8 @@ export function ToggleThemeButton() {
   return (
     <IconButton size='medium' outlined onClick={(toggleTheme)} onMouseDown={e => e.preventDefault()}>
       {theme === 'dark'
-        ? <LigthIcon height={16} width={16} fill='var(--placeholder-color)' />
-        : <DarkIcon height={16} width={16} fill='var(--placeholder-color)' />
+        ? <LigthIcon size={16} fill='var(--placeholder-color)' />
+        : <DarkIcon size={16} fill='var(--placeholder-color)' />
       }
     </IconButton>
   )
