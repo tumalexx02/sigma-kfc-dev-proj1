@@ -10,6 +10,9 @@ services:
       - './nginx.conf:/etc/nginx/nginx.conf'
     networks:
       - dev
+    depends_on:
+    - frontendprod
+    - backendprod
 
   postgresprod:
     image: postgres:15
@@ -44,10 +47,9 @@ services:
     image: frontend:latest
     container_name: frontend-prod
     ports:
-      - "5173:5173"
+      - "3000:80"
     networks:
       - dev
-    command: sh -c "npm run dev"
 
 volumes:
   postgres-data:

@@ -23,7 +23,7 @@ export const useUserStore = create<IUserStore>()(devtools(
             password
           })
   
-          set({ jwt: data['token'] });
+          // set({ jwt: data['token'] });
           console.log(data['token']);
         } catch(e) {
           console.log(e)
@@ -31,13 +31,13 @@ export const useUserStore = create<IUserStore>()(devtools(
       },
       register: async (name: string, email: string, password: string) => {
         try {
-          const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-up', {
+          const { data } = await axios.post<IAuthResponse>('http://0.0.0.0:8000/api/sign-up', {
             name,
             email,
             password
           })
   
-          set({ jwt: data['token'] });
+          // set({ jwt: data['token'] });
           console.log(data['token']);
         } catch(e) {
           console.log(e)
