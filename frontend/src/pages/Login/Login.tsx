@@ -25,7 +25,8 @@ export function Login() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const jwt = useUserStore(state => state.jwt);
-  const serverError = useUserStore(state => state.serverError);
+  const serverErrorMessage = useUserStore(state => state.serverErrorMessage);
+  const serverErrorType = useUserStore(state => state.serverErrorType);
   const login = useUserStore(state => state.login);
   const clearServerError = useUserStore(state => state.clearServerError);
 
@@ -43,11 +44,12 @@ export function Login() {
   }, [jwt, navigate]);
 
   useEffect(() => {
-    if (serverError) {
-      setErrorMessage(serverError);
-      setErrorType('all');
-    }
-  }, [serverError])
+    setErrorMessage(serverErrorMessage);
+  }, [serverErrorMessage])
+
+  useEffect(() => {
+    setErrorType(serverErrorType);
+  }, [serverErrorType])
 
   useEffect(() => {
     switch(errorType) {
@@ -64,9 +66,9 @@ export function Login() {
   }, [errorType])
 
   function clearError() {
+    clearServerError();
     setErrorType(null);
     setErrorMessage(null);
-    clearServerError();
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

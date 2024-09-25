@@ -1,11 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { IAuthResponse } from '../interfaces/Auth.interface';
 
+type serverErrorTypeType = 'all' | 'email' | null;
+
 export interface IUserStore {
   jwt: string | null;
-  serverError: string | null;
+  serverErrorMessage: string | null;
+  serverErrorType: serverErrorTypeType;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
@@ -16,9 +19,11 @@ export const useUserStore = create<IUserStore>()(devtools(
   persist(
     (set) => ({
       jwt: null,
-      serverError: null,
+      serverErrorMessage: null,
+      serverErrorType: null,
       login: async (email: string, password: string) => {
         try {
+          set({serverErrorMessage: null, serverErrorType: null});
           const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-in', {
             email,
             password
@@ -26,11 +31,16 @@ export const useUserStore = create<IUserStore>()(devtools(
   
           set({ jwt: data['token'] });
         } catch(e) {
-          console.log(e)
+          if (e instanceof AxiosError) {
+            const error = JSON.parse(e.request.response);
+            set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
+          }
         }
       },
       register: async (name: string, email: string, password: string) => {
         try {
+          set({serverErrorMessage: null, serverErrorType: null});
+
           const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-up', {
             name,
             email,
@@ -39,13 +49,16 @@ export const useUserStore = create<IUserStore>()(devtools(
   
           set({ jwt: data['token'] });
         } catch(e) {
-          console.log(e)
+          if (e instanceof AxiosError) {
+            const error = JSON.parse(e.request.response);
+            set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
+          }
         }
       },
       logout: () => {
         set({jwt: null})
       },
-      clearServerError: () => set({serverError: null})
+      clearServerError: () => set({serverErrorMessage: null, serverErrorType: null})
     }),
     {
       name: 'userData',

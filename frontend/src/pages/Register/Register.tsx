@@ -31,7 +31,8 @@ export function Register() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const jwt = useUserStore(state => state.jwt);
-  const serverError = useUserStore(state => state.serverError);
+  const serverErrorMessage = useUserStore(state => state.serverErrorMessage);
+  const serverErrorType = useUserStore(state => state.serverErrorType);
   const register = useUserStore(state => state.register);
   const clearServerError = useUserStore(state => state.clearServerError);
   
@@ -51,11 +52,12 @@ export function Register() {
   }, [jwt, navigate]);
 
   useEffect(() => {
-    if (serverError) {
-      setErrorMessage(serverError);
-      setErrorType('email');
-    }
-  }, [serverError])
+    setErrorMessage(serverErrorMessage);
+  }, [serverErrorMessage])
+
+  useEffect(() => {
+    setErrorType(serverErrorType);
+  }, [serverErrorType])
 
   useEffect(() => {
     switch(errorType) {
@@ -78,9 +80,9 @@ export function Register() {
   }, [errorType])
 
   function clearError() {
+    clearServerError();
     setErrorType(null);
     setErrorMessage(null);
-    clearServerError();
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
