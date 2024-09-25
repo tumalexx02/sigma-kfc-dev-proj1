@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef, useEffect, useState } from 'react';
+import { ChangeEvent, forwardRef, useState } from 'react';
 import { IInputProps } from './Input.props';
 import cn from 'classnames';
 import styles from './Input.module.css'
@@ -6,10 +6,6 @@ import { Label } from '../Label/Label';
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(function Input({className, inputId, customSize = 'default', backgroundColor = 'transparent', isValid = true, label,  ...props}, ref) {
   const [value, setValue] = useState<string>('');
-
-  useEffect(() => {
-    console.log(value);
-  }, [value])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
