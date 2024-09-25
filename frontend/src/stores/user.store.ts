@@ -32,8 +32,12 @@ export const useUserStore = create<IUserStore>()(devtools(
           set({ jwt: data['token'] });
         } catch(e) {
           if (e instanceof AxiosError) {
-            const error = JSON.parse(e.request.response);
-            set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
+            if (e.request.response) {
+              const error = JSON.parse(e.request.response);
+              set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
+            } else {
+              set({serverErrorMessage: 'Ошибка сервера', serverErrorType: null});
+            }
           }
         }
       },
@@ -50,8 +54,12 @@ export const useUserStore = create<IUserStore>()(devtools(
           set({ jwt: data['token'] });
         } catch(e) {
           if (e instanceof AxiosError) {
-            const error = JSON.parse(e.request.response);
-            set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
+            if (e.request.response) {
+              const error = JSON.parse(e.request.response);
+              set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
+            } else {
+              set({serverErrorMessage: 'Ошибка сервера', serverErrorType: null});
+            }
           }
         }
       },
