@@ -8,6 +8,7 @@ export interface IUserStore {
   serverError: string | null;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
+  logout: () => void;
   clearServerError: () => void;
 }
 
@@ -23,8 +24,7 @@ export const useUserStore = create<IUserStore>()(devtools(
             password
           })
   
-          // set({ jwt: data['token'] });
-          console.log(data['token']);
+          set({ jwt: data['token'] });
         } catch(e) {
           console.log(e)
         }
@@ -37,11 +37,13 @@ export const useUserStore = create<IUserStore>()(devtools(
             password
           })
   
-          // set({ jwt: data['token'] });
-          console.log(data['token']);
+          set({ jwt: data['token'] });
         } catch(e) {
           console.log(e)
         }
+      },
+      logout: () => {
+        set({jwt: null})
       },
       clearServerError: () => set({serverError: null})
     }),

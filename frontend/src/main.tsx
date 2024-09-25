@@ -7,11 +7,12 @@ import { RequireAuth } from './helpers/RequireAuth.tsx';
 import { Login } from './pages/Login/Login.tsx';
 import { Register } from './pages/Register/Register.tsx';
 import { ThemeProvider } from './helpers/ThemeProvider.ts';
+import MainLayout from './layouts/Main/MainLayout.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RequireAuth>123</RequireAuth>
+    element: <RequireAuth><MainLayout /></RequireAuth>
   },
   {
     path: '/auth',
