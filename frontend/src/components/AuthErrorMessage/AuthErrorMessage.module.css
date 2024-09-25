@@ -1,0 +1,28 @@
+.error-message {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 2px solid var(--outline-color-error);
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: var(--outline-color-error);
+}
+
+.error-message div {
+  padding: 14px;
+  border-right: 2px solid var(--outline-color-error);
+}
+
+.error-message span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  background-color: var(--background-color);
+  flex: 1;
+  height: 100%;
+  max-width: 337px;
+  width: 100%;
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 14px;
+}

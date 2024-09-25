@@ -7,6 +7,7 @@ import styles from './Register.module.css';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useUserStore } from '../../stores/user.store';
 import { isNameValid, isPasswordValid, isEmailValid, arePasswordsSame } from '../../helpers/auth.validation';
+import { AuthErrorMessage } from '../../components/AuthErrorMessage/AuthErrorMessage';
 
 export type RegisterErrorTypes = 'name' | 'email' | 'password' | 'repeat-password' | 'all' | null;
 
@@ -85,6 +86,7 @@ export function Register() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    
     const target = e.target as typeof e.target & LoginForm;
     
     const name = target.name.value.trim();
@@ -124,30 +126,18 @@ export function Register() {
     <div className={styles['form-wrapper']}>
       <Headling>Регистрация</Headling>
 
-      {errorMessage && 
-      (<div className={styles['error-message']}>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="var(--background-color)"><path d="M480-120q-33 0-56.5-23.5T400-200q0-33 23.5-56.5T480-280q33 0 56.5 23.5T560-200q0 33-23.5 56.5T480-120Zm-80-240v-480h160v480H400Z"/></svg>
-        </div>
-        <span>{errorMessage}</span>
-      </div>)
-      }
+      {errorMessage && <AuthErrorMessage>{errorMessage}</AuthErrorMessage>}
 
       <form className={styles['form']} onSubmit={handleSubmit}>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="name">Ваше имя</label>
-          <Input ref={nameRef} placeholder="Имя" id="name" type="text" name="name" isValid={(errorType !== 'all') && (errorType !== 'name')} onChange={() => clearError()} />
-        </div>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="email">Ваш Email</label>
-          <Input ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
-        </div>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="password">Ваш пароль</label>
-          <ProtectedInput ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
-          <ProtectedInput ref={repeatPasswordRef} placeholder="Повторите пароль" id="repeatPassword" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
-        </div>
-        <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Зарегистрироваться</Button>
+        <Input label='Ваше имя' inputId='name' autoComplete='name' ref={nameRef} placeholder="Имя" type="text" name="name" isValid={(errorType !== 'all') && (errorType !== 'name')} onChange={() => clearError()} />
+
+        <Input label='Ваш Email' inputId='email' autoComplete='email' ref={emailRef} placeholder="Email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
+
+        <ProtectedInput label='Ваш пароль' inputId='password' autoComplete='new-password' ref={passwordRef} placeholder="Пароль" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+
+        <ProtectedInput label='Ваш пароль (подтверждение)' inputId='repeatPassword' autoComplete='new-password' ref={repeatPasswordRef} placeholder="Повторите пароль" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
+
+        <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Создать аккаунт</Button>
       </form>
 
       <div className={styles['more-wrapper']}>

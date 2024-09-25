@@ -38,3 +38,9 @@
 .dotted-input::placeholder {
   letter-spacing: normal;
 }
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

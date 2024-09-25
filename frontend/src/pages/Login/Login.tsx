@@ -7,6 +7,7 @@ import styles from './Login.module.css';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { isEmailValid, isPasswordValid } from '../../helpers/auth.validation';
 import { useUserStore } from '../../stores/user.store';
+import { AuthErrorMessage } from '../../components/AuthErrorMessage/AuthErrorMessage';
 
 export type LoginErrorTypes = 'email' | 'password' | 'all' | null;
 
@@ -95,24 +96,13 @@ export function Login() {
     <div className={styles['form-wrapper']}>
       <Headling>Вход</Headling>
 
-      {errorMessage && 
-      (<div className={styles['error-message']}>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="var(--background-color)"><path d="M480-120q-33 0-56.5-23.5T400-200q0-33 23.5-56.5T480-280q33 0 56.5 23.5T560-200q0 33-23.5 56.5T480-120Zm-80-240v-480h160v480H400Z"/></svg>
-        </div>
-        <span>{errorMessage}</span>
-      </div>)
-      }
+      {errorMessage && <AuthErrorMessage>{errorMessage}</AuthErrorMessage>}
 
       <form className={styles['form']} onSubmit={handleSubmit}>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="email">Ваш Email</label>
-          <Input ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
-        </div>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="password">Ваш пароль</label>
-          <ProtectedInput ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
-        </div>
+        <Input label='Ваш Email' autoComplete='email' ref={emailRef} placeholder="Email" inputId="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
+
+        <ProtectedInput label='Ваш пароль' autoComplete='current-password' ref={passwordRef} placeholder="Пароль" inputId="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+
         <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Войти</Button>
       </form>
 

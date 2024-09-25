@@ -1,9 +1,15 @@
 .headling {
   margin: 0;
-  font-size: 40px;
-  line-height: 56px;
+  font-size: 36px;
+  line-height: 46px;
   font-family: "Montserrat", sans-serif;
   color: var(--text-color);
   font-weight: 600;
-  letter-spacing: 2px;
+}
+
+@media (max-width: 575px) {
+  .headling {
+    font-size: 32px;
+    line-height: 42px;
+  }
 }

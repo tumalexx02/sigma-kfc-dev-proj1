@@ -1,33 +1,24 @@
 .form-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 40px 60px;
-  border-radius: 32px;
+  gap: 20px;
+  padding: 50px 40px;
+  border-radius: 8px;
   border: 0.5px solid var(--placeholder-color);
-  width: 520px;
+  max-width: 450px;
+  width: 100%;
   background-color: var(--background-color);
+  margin: 0 auto;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
   gap: 20px;
 }
 
-.label {
-  font-size: 18px;
-  color: var(--placeholder-color);
-}
-
 .button {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .more-wrapper {
@@ -37,38 +28,34 @@
 }
 
 .more-wrapper span {
-  color: var(--text-color);
+  color: var(--label-color);
 }
 
 .link {
-  margin-top: 8px;
+  margin-top: 6px;
   text-decoration: none;
   color: var(--second-color);
 }
 
-.error-message {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  border: 2px solid var(--outline-color-error);
-  overflow: hidden;
-  border-radius: 16px;
-  background-color: var(--outline-color-error);
+.link:focus {
+  outline: none;
+  color: var(--second-color-active);
+  text-decoration: underline;
 }
 
-.error-message div {
-  padding: 14px;
-  border-right: 2px solid var(--outline-color-error);
+@media (hover: hover) {
+  .link:hover {
+    color: var(--second-color-hovered);
+  }
+  .link:hover {
+    color: var(--second-color-active);
+  }
 }
 
-.error-message span {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  text-align: center;
-  background-color: var(--background-color);
-  flex: 1;
-  height: 100%;
-  color: var(--text-color);
-  padding: 20px;
-  border-radius: 14px;
+@media (max-width: 575px) {
+  .form-wrapper {
+    padding: 0 20px;
+    border-color: transparent;
+    gap: 25px;
+  }
 }

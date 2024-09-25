@@ -4,10 +4,12 @@
   --second-color: #36cb7d;
   --second-color-hovered: #30b872;
   --second-color-active: #2aa465;
+  --second-color-disabled: #3e9b6252;
 
   --accent-color: #da7d4e;
   --accent-color-hovered: #c36f45;
   --accent-color-active: #b86841;
+  --accent-color-disabled: #b7694252;
 
   --outline-color: #fbfbfb;
   --outline-color-error: #df2626;
@@ -17,6 +19,8 @@
   --invert-color: #161616;
 
   --placeholder-color: #808080;
+
+  --label-color: #c8c8c8;
 }
 
 .dark {
@@ -24,11 +28,13 @@
 
   --second-color: #3e9b62;
   --second-color-hovered: #30b872;
-  --second-color-active: #2aa465;
+  --second-color-active: #31ba73;
+  --second-color-disabled: #3e9b6252;
 
   --accent-color: #b76942;
   --accent-color-hovered: #c36f45;
   --accent-color-active: #b86841;
+  --accent-color-disabled: #b7694252;
 
   --outline-color: #fbfbfb;
   --outline-color-error: #df2626;
@@ -38,6 +44,8 @@
   --invert-color: #161616;
 
   --placeholder-color: #808080;
+
+  --label-color: #aaaaaa;
 }
 
 .light {
@@ -46,10 +54,12 @@
   --second-color: #36cb7d;
   --second-color-hovered: #30b872;
   --second-color-active: #2aa465;
+  --second-color-disabled: #36cb7d80;
 
   --accent-color: #e78c5f;
   --accent-color-hovered: #c36f45;
   --accent-color-active: #b86841;
+  --accent-color-disabled: #e78c5f80;
 
   --outline-color: #161616;
   --outline-color-error: #dd4747;
@@ -59,6 +69,8 @@
   --invert-color: #fbfbfb;
 
   --placeholder-color: #808080;
+
+  --label-color: #606060;
 }
 
 body {
@@ -68,7 +80,7 @@ body {
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -78,4 +90,8 @@ body {
   align-items: start;
   gap: 50px;
   padding: 25px;
+}
+
+.input[type="password"] {
+  -webkit-text-security: disc;
 }

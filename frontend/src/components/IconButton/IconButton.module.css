@@ -1,0 +1,42 @@
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: auto !important;
+  min-height: auto !important;
+  padding: 0 !important;
+}
+
+.icon-button.small {
+  width: 36px;
+  height: 36px;
+}
+
+.icon-button.small svg {
+  fill: var(--text-color);
+  width: 15px;
+}
+
+.icon-button.medium {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-button.medium svg {
+  fill: var(--text-color);
+  width: 16px;
+}
+
+.icon-button.big {
+  width: 45px;
+  height: 45px;
+}
+
+.icon-button.big svg {
+  fill: var(--text-color);
+  width: 17px;
+}
+
+.icon-button:disabled svg {
+  fill: var(--placeholder-color);
+}
