@@ -8,6 +8,7 @@
   padding: 16px 24px;
   transition: background-color 0.3s ease, scale 0.1s ease, border-color 0.2s ease;
   cursor: pointer;
+  position: relative;
   outline: 2px solid transparent;
 }
 
@@ -27,7 +28,7 @@
   font-size: 16px;
   border-radius: 10px;
   padding: 12px 24px;
-  line-height: 24px;
+  line-height: 20px;
 }
 
 .button.big {
@@ -36,7 +37,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 28px;
-  padding: 16px 26px;
+  padding: 12px 26px;
   letter-spacing: 1px;
   border-radius: 12px;
 }

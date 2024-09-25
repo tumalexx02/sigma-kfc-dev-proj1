@@ -99,14 +99,10 @@ export function Login() {
       {errorMessage && <AuthErrorMessage>{errorMessage}</AuthErrorMessage>}
 
       <form className={styles['form']} onSubmit={handleSubmit}>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="email">Ваш Email</label>
-          <Input autoComplete='email' ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
-        </div>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="password">Ваш пароль</label>
-          <ProtectedInput autoComplete='current-password' ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
-        </div>
+        <Input label='Ваш Email' autoComplete='email' ref={emailRef} placeholder="Email" inputId="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
+
+        <ProtectedInput label='Ваш пароль' autoComplete='current-password' ref={passwordRef} placeholder="Пароль" inputId="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+
         <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Войти</Button>
       </form>
 

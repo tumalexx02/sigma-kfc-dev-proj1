@@ -1,11 +1,11 @@
 .form-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 40px 60px;
-  border-radius: 32px;
+  gap: 20px;
+  padding: 50px 40px;
+  border-radius: 8px;
   border: 0.5px solid var(--placeholder-color);
-  max-width: 520px;
+  max-width: 450px;
   width: 100%;
   background-color: var(--background-color);
   margin: 0 auto;
@@ -14,22 +14,11 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.label {
-  font-size: 16px;
-  color: var(--label-color);
+  gap: 20px;
 }
 
 .button {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .more-wrapper {
@@ -43,7 +32,7 @@
 }
 
 .link {
-  margin-top: 8px;
+  margin-top: 6px;
   text-decoration: none;
   color: var(--second-color);
 }

@@ -129,22 +129,14 @@ export function Register() {
       {errorMessage && <AuthErrorMessage>{errorMessage}</AuthErrorMessage>}
 
       <form className={styles['form']} onSubmit={handleSubmit}>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="name">Ваше имя</label>
-          <Input autoComplete='name' ref={nameRef} placeholder="Имя" id="name" type="text" name="name" isValid={(errorType !== 'all') && (errorType !== 'name')} onChange={() => clearError()} />
-        </div>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="email">Ваш Email</label>
-          <Input autoComplete='email' ref={emailRef} placeholder="Email" id="email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
-        </div>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="password">Ваш пароль</label>
-          <ProtectedInput autoComplete='new-password' ref={passwordRef} placeholder="Пароль" id="password" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
-        </div>
-        <div className={styles['input-wrapper']}>
-          <label className={styles['label']} htmlFor="repeatPasswordRef">Повторите пароль</label>
-          <ProtectedInput autoComplete='new-password' ref={repeatPasswordRef} placeholder="Ваш пароль (повтор)" id="repeatPassword" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
-        </div>
+        <Input label='Ваше имя' inputId='name' autoComplete='name' ref={nameRef} placeholder="Имя" type="text" name="name" isValid={(errorType !== 'all') && (errorType !== 'name')} onChange={() => clearError()} />
+
+        <Input label='Ваш Email' inputId='email' autoComplete='email' ref={emailRef} placeholder="Email" type="text" name="email" isValid={(errorType !== 'all') && (errorType !== 'email')} onChange={() => clearError()} />
+
+        <ProtectedInput label='Ваш пароль' inputId='password' autoComplete='new-password' ref={passwordRef} placeholder="Пароль" name="password" isValid={(errorType !== 'all') && (errorType !== 'password')} onChange={() => clearError()} />
+
+        <ProtectedInput label='Ваш пароль (подтверждение)' inputId='repeatPassword' autoComplete='new-password' ref={repeatPasswordRef} placeholder="Повторите пароль" name="repeatPassword" isValid={(errorType !== 'all') && (errorType !== 'repeat-password')} onChange={() => clearError()} />
+
         <Button className={styles['button']} size='big' onMouseDown={e => e.preventDefault()}>Создать аккаунт</Button>
       </form>
 

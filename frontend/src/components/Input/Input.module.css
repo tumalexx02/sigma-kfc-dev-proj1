@@ -1,16 +1,21 @@
 .input {
   font-size: 16px;
-  line-height: 24px;
-  padding: 16px 18px;
-  border-radius: 12px;
+  border-radius: 10px;
+  line-height: 20px;
+  padding: 12px 18px;
   font-weight: 400;
-  background-color: var(--background-color);
   border: solid 0.5px var(--placeholder-color);
   outline: solid 2px transparent;
   color: var(--text-color);
   transition: outline-color 0.2s, border-color 0.2s;
   width: 100%;
   -webkit-text-security: none;
+}
+
+.big {
+  line-height: 24px;
+  padding: 16px 18px;
+  border-radius: 10px;
 }
 
 .input::placeholder {
@@ -38,4 +43,10 @@ input::-webkit-contacts-auto-fill-button {
   pointer-events: none;
   position: absolute;
   right: 0;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

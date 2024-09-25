@@ -14,7 +14,7 @@ function AuthLayout() {
   return (
     <div className={cn(styles['layout'])}>
       <header className={styles['header']}>
-        <Link to='/auth/login' className={styles['logo']} onClick={handleClick}>
+        <Link to='/' className={styles['logo']} onClick={handleClick}>
           <Logo fill={'var(--text-color)'} />
         </Link>
 

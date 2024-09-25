@@ -5,8 +5,9 @@ import styles from './ProtectedInput.module.css';
 import cn from 'classnames'
 import { HideIcon } from '../../icons/Hide.icon';
 import { ShowIcon } from '../../icons/Show.icon';
+import { Label } from '../Label/Label';
 
-const ProtectedInput = forwardRef<HTMLInputElement, IInputProps>(({className, ...props}, ref) => {
+const ProtectedInput = forwardRef<HTMLInputElement, IInputProps>(({className, label, inputId, ...props}, ref) => {
   const [isPrivate, setIsPrivate] = useState<boolean>(true);
 
   const handleClickShowPassword = () => setIsPrivate((show) => !show);
@@ -19,20 +20,32 @@ const ProtectedInput = forwardRef<HTMLInputElement, IInputProps>(({className, ..
     event.preventDefault();
   };
 
-  return (
+  const ProtectedInputElement = (
     <div className={styles['protected-input']}>
-      <Input ref={ref} type={isPrivate ? 'password' : 'text'} {...props} className={cn(className, styles['input'], {
+      <Input ref={ref} inputId={inputId} type={isPrivate ? 'password' : 'text'} {...props} className={cn(className, styles['input'], {
         [styles['dotted-input']]: isPrivate
       })} />
       <button type="button" className={styles['toggle-button']} onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} onMouseUp={handleMouseUpPassword}>
         {
           isPrivate
-            ? <HideIcon fill="var(--placeholder-color)" />
-            : <ShowIcon fill="var(--placeholder-color)" />
+            ? <HideIcon fill="var(--placeholder-color)" size={20} />
+            : <ShowIcon fill="var(--placeholder-color)" size={20} />
         }
       </button>
     </div>
   )
+
+  return <>
+      {label
+        ?
+          <div className={styles['input-wrapper']}>
+            <Label htmlFor={inputId}>{label}</Label>
+            {ProtectedInputElement}
+          </div>
+        :
+          ProtectedInputElement
+      }
+    </>
 })
 
 export default ProtectedInput;
