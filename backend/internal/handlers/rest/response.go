@@ -7,10 +7,10 @@ import (
 
 type error struct {
 	Message string `json:"message"`
-	Tag     string `json:"tag,omitempty"`
+	Type    string `json:"type,omitempty"`
 }
 
-func NewErrorResponse(c *gin.Context, statusCode int, message string, tag string) {
+func NewErrorResponse(c *gin.Context, statusCode int, message string, t string) {
 	logrus.Error(message)
-	c.AbortWithStatusJSON(statusCode, error{Message: message, Tag: tag})
+	c.AbortWithStatusJSON(statusCode, error{Message: message, Type: t})
 }

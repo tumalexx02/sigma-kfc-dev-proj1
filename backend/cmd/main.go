@@ -7,6 +7,7 @@ import (
 	"backend/internal/service"
 	"backend/web/server"
 	_ "github.com/lib/pq"
+	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"os"
@@ -36,9 +37,21 @@ func main() {
 	services := service.NewService(dbase)
 	handlers := handler.NewHandler(services)
 
+	// Настройки CORS
+	corsHandler := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:3000"}, // Замените на нужный вам источник
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"Authorization", "Content-Type"},
+		AllowCredentials: true,
+	})
+
 	srv := new(server.Server)
 	port := os.Getenv("PORT")
-	if err = srv.Run(port, handlers.InitRoutes()); err != nil {
+
+	// Оборачиваем маршруты в CORS middleware
+	handlerWithCors := corsHandler.Handler(handlers.InitRoutes())
+
+	if err = srv.Run(port, handlerWithCors); err != nil {
 		logrus.Info("Server init error: ", err)
 		os.Exit(1)
 	}

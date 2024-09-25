@@ -15,7 +15,7 @@ func (h *Handler) signUp(c *gin.Context) {
 	}
 	_, err := h.services.CreateUser(input)
 	if err != nil {
-		NewErrorResponse(c, http.StatusInternalServerError, "Аккаунт с данной почтой уже существует", "Email")
+		NewErrorResponse(c, http.StatusInternalServerError, "Аккаунт с данной почтой уже существует", "email")
 		return
 	}
 	token, err := h.services.Authorization.GenerateToken(input.Email, input.Password)
