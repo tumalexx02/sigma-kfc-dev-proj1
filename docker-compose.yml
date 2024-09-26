@@ -4,6 +4,7 @@ networks:
 services:
   nginx:
     image: nginx:stable-alpine
+    container_name: nginx-prod
     ports:
       - "80:80"
     volumes:
