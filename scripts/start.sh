@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker build -t backend:latest ./backend
+docker-compose up --build -d frontendprod
 
-docker build -t frontend:latest ./frontend
+docker-compose up --build -d backendprod
 
 docker compose up -d

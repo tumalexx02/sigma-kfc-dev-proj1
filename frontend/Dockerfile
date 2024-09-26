@@ -1,7 +1,11 @@
 # Этап сборки приложения
 FROM node:18-alpine AS build
 
+ARG VITE_BACKEND_PORT
+ENV VITE_BACKEND_PORT=$VITE_BACKEND_PORT
+
 WORKDIR /app                 
+
 RUN apk add --no-cache npm
 COPY package.json package-lock.json ./
 RUN npm install

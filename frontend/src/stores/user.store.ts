@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { IAuthResponse } from '../interfaces/Auth.interface';
+import { BACKEND_PORT } from '../helpers/api';
 
 type serverErrorTypeType = 'all' | 'email' | null;
 
@@ -24,7 +25,7 @@ export const useUserStore = create<IUserStore>()(devtools(
       login: async (email: string, password: string) => {
         try {
           set({serverErrorMessage: null, serverErrorType: null});
-          const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-in', {
+          const { data } = await axios.post<IAuthResponse>(`http://localhost:${BACKEND_PORT}/api/sign-in`, {
             email,
             password
           })
@@ -46,7 +47,7 @@ export const useUserStore = create<IUserStore>()(devtools(
         try {
           set({serverErrorMessage: null, serverErrorType: null});
 
-          const { data } = await axios.post<IAuthResponse>('http://localhost:8000/api/sign-up', {
+          const { data } = await axios.post<IAuthResponse>(`http://localhost:${BACKEND_PORT}/api/sign-up`, {
             name,
             email,
             password
