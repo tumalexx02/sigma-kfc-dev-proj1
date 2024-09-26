@@ -37,6 +37,7 @@ export const useUserStore = create<IUserStore>()(devtools(
               set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
             } else {
               set({serverErrorMessage: 'Ошибка сервера', serverErrorType: null});
+              console.error(e);
             }
           }
         }
@@ -59,6 +60,7 @@ export const useUserStore = create<IUserStore>()(devtools(
               set({serverErrorMessage: error.message, serverErrorType: error.tag.toLowerCase()});
             } else {
               set({serverErrorMessage: 'Ошибка сервера', serverErrorType: null});
+              console.error(e);
             }
           }
         }
