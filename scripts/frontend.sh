@@ -1,5 +1,3 @@
 #!/bin/bash
 
-docker build -t frontend:latest ./frontend
-
-docker compose up
+docker-compose up --build -d frontendprod
